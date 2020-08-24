@@ -1,12 +1,12 @@
 ---
-app_name: consul
-#domain: your_domain.com
+app_name: KAVAK
+domain: "petitions.dev.mx.kavak.services"
 
 server_hostname: "{{ domain | default(ansible_default_ipv4.address) }}"
 
 # Server Timzone + Locale
-timezone: Europe/Madrid
-locale: en_US.UTF-8
+timezone: America/Mexico_City
+locale: es_ES.UTF-8
 
 # General settings
 env: production
@@ -36,12 +36,13 @@ database_hostname: "localhost"
 database_port: 5432
 
 #SMTP
-smtp_address:        "smtp.example.com"
-smtp_port:           25
-smtp_domain:         "your_domain.com"
-smtp_user_name:      "username"
-smtp_password:       "password"
-smtp_authentication: "plain"
+smtp_address:        "smtp.gmail.com"
+smtp_port:           587
+smtp_domain:         ""
+smtp_user_name:      ""
+smtp_password:       ""
+smtp_authentication:       "plain"
+enable_starttls_auto: true
 
 #LetsEncrypt
-#letsencrypt_email: "your_email@example.com"
+letsencrypt_email: "benjamin.martinez@kavak.com"

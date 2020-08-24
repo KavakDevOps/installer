@@ -29,7 +29,6 @@ Below is a list of default values that you can configure:
 
 ```yaml
 ---
-
 # Install 1 or more versions of ruby
 # The last ruby listed will be set as the default ruby
 rvm1_rubies:
@@ -75,7 +74,7 @@ rvm1_rvm_check_for_updates: True
 rvm1_gpg_keys: '409B6B1796C275462A1703113804BB82D39DC0E3'
 
 # The GPG key server
-rvm1_gpg_key_server: 'hkp://pool.sks-keyservers.net'
+rvm1_gpg_key_server: 'hkp://ipv4.pool.sks-keyservers.net'
 
 # autolib mode, see https://rvm.io/rvm/autolibs
 rvm1_autolib_mode: 3
@@ -85,15 +84,15 @@ rvm1_autolib_mode: 3
 
 ```yaml
 ---
-
 - name: Configure servers with ruby support for single user
   hosts: all
 
   roles:
-    - { role: rvm.ruby,
+    - {
+        role: rvm.ruby,
         tags: ruby,
         rvm1_rubies: ['ruby-2.3.1'],
-        rvm1_user: 'ubuntu'
+        rvm1_user: 'ubuntu',
       }
 ```
 
@@ -104,19 +103,20 @@ If you need to pass a list of ruby versions, pass it in an array like so.
 - name: Configure servers with ruby support system wide
   hosts: all
   roles:
-    - { role: rvm.ruby,
+    - {
+        role: rvm.ruby,
         tags: ruby,
         become: yes,
 
-        rvm1_rubies: ['ruby-2.2.5','ruby-2.3.1'],
-        rvm1_install_flags: '--auto-dotfiles',     # Remove --user-install from defaults
-        rvm1_install_path: /usr/local/rvm,         # Set to system location
-        rvm1_user: root                            # Need root account to access system location
+        rvm1_rubies: ['ruby-2.2.5', 'ruby-2.3.1'],
+        rvm1_install_flags: '--auto-dotfiles', # Remove --user-install from defaults
+        rvm1_install_path: /usr/local/rvm, # Set to system location
+        rvm1_user: root, # Need root account to access system location
       }
 ```
+
 _rvm_rubies must be specified via `ruby-x.x.x` so that if you want_
 _ruby 2.2.5, you will need to pass in an array **rvm_rubies: ['ruby-2.2.5']**_
-
 
 #### System wide installation
 
